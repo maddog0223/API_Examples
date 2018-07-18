@@ -1,42 +1,42 @@
 package dailymotion.mapper;
 
 
-import dailymotion.model.database.Videos;
+import dailymotion.model.database.Video;
 import org.apache.ibatis.annotations.*;
 
 @Mapper
 public interface DailyMapper {
 
-    String INSERT_VIDEO_DETAILS = "INSERT INTO `dailymotion`.`videos` (`id`, `title`, `channel`, `owner`)" +
+    String INSERT_VIDEO_DETAILS = "INSERT INTO `dailymotion`.`video` (`id`, `title`, `channel`, `owner`)" +
             " VALUES(#{id}, #{title}, #{channel}, #{owner})";
 
-    String GET_BY_ID = "SELECT * FROM `dailymotion`.`videos` where id = #{id}";
+    String GET_BY_ID = "SELECT * FROM `dailymotion`.`video` where id = #{id}";
 
-    String GET_ID_NUMBER= "SELECT * FROM `dailymotion`.`videos` where idnumber = #{idnumber}";
+    String GET_ID_NUMBER= "SELECT * FROM `dailymotion`.`video` where idnumber = #{idnumber}";
 
-    String GET_BY_TITLE = "SELECT * FROM `dailymotion`.`videos` where title = #{title}";
+    String GET_BY_TITLE = "SELECT * FROM `dailymotion`.`video` where title = #{title}";
 
-    String UPDATE_VIDEO = "UPDATE `dailymotion`.`videos` SET id = #{id}, " +
+    String UPDATE_VIDEO = "UPDATE `dailymotion`.`video` SET id = #{id}, " +
             "title = #{title}, channel = #{channel} WHERE idnumber = #{idnumber}";
 
-    String DELETE_VIDEO = "DELETE FROM `dailymotion`.`videos` WHERE title = #{title}";
+    String DELETE_VIDEO_BY_IDNUMBER = "DELETE FROM `dailymotion`.`video` WHERE idnumber = #{idnumber}";
 
     @Select(GET_BY_ID)
-    public Videos selectid(String id);
+    public Video selectid(String id);
 
     @Select(GET_BY_TITLE)
-    public Videos selecttitle(String title);
+    public Video selecttitle(String title);
 
     @Select(GET_BY_ID)
-    public Videos selctbyIDNUMBER(int idnumber);
+    public Video selctbyIDNUMBER(int idnumber);
 
     @Insert(INSERT_VIDEO_DETAILS)
-    public int insertvideo(Videos video);
+    public int insertvideo(Video video);
 
     @Update(UPDATE_VIDEO)
-    public int updatevideo(Videos video);
+    public int updatevideo(Video video);
 
-    @Delete(DELETE_VIDEO)
-    public int deletevideo(Videos videos);
+    @Delete(DELETE_VIDEO_BY_IDNUMBER)
+    public int deletevideoBYIDNUMBER(int idnumber);
 
 }

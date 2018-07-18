@@ -3,10 +3,9 @@ package dailymotion.service;
 import dailymotion.mapper.DailyMapper;
 import dailymotion.model.dailymotion.DailyMotionRoot;
 import dailymotion.model.dailymotion.List;
-import dailymotion.model.database.Videos;
+import dailymotion.model.database.Video;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.client.RestTemplate;
 
 @Service
@@ -46,7 +45,7 @@ public class DailyService {
 
             for (List list : info) {
 
-                Videos video = new Videos();
+                Video video = new Video();
 
                 video.setId(id);
                 video.setTitle(list.getTitle());
@@ -64,7 +63,7 @@ public class DailyService {
     }
 
     //post insert METHOD
-    public Videos insertCustomVideo(Videos video){
+    public Video insertCustomVideo(Video video){
 
         mapper.insertvideo(video);
 
@@ -83,7 +82,7 @@ public class DailyService {
     }
 
     //update
-    public Videos updatebyTitle(Videos video){
+    public Video updatebyTitle(Video video){
 
         mapper.updatevideo(video);
 
@@ -92,9 +91,10 @@ public class DailyService {
     }
 
     //delete by IDNUMBER
-    public Videos deletebyIDnumber(Videos video){
+    public Video deletebyIDnumber(int idnumber){
 
-        mapper.deletevideo(video);
-        return mapper.selecttitle(video.getTitle());
+            mapper.deletevideoBYIDNUMBER(idnumber);
+
+            return mapper.selctbyIDNUMBER(idnumber);
     }
 }

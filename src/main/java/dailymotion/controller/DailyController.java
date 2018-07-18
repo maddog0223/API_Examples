@@ -2,7 +2,7 @@ package dailymotion.controller;
 
 import dailymotion.model.dailymotion.DailyMotionRoot;
 import dailymotion.model.dailymotion.List;
-import dailymotion.model.database.Videos;
+import dailymotion.model.database.Video;
 import dailymotion.service.DailyService;
 import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +20,11 @@ public class DailyController {
 
     //Get search
 
-    //Requesting mapping the get method woth "/searchvideo"
+    //Requesting mapping the get method with "/searchvideo"
     @RequestMapping("/searchvideo")
     public List searchobject_videos(
 
-            //Example = https:localhost8080:dailymotion/search?id=<String id>
+            //Example = http://localhost:8080/dailymotion/searchvideo?id=<ex:x7123>
             @RequestParam("id") String id) {
 
         List videoresponse = service.searchvideo(id);
@@ -33,7 +33,7 @@ public class DailyController {
 
     }
     //Get search
-    //DailyMotion root
+    // DailyMotion root
     @RequestMapping("/searchvideos")
     public DailyMotionRoot searchobject_videos() {
 
@@ -45,27 +45,27 @@ public class DailyController {
 
 
     //Post mapping the insert_new_video with "/"
-    @PostMapping("/")
+    @PostMapping
     // Requesting the body to use the Video class
-    public Videos create(@RequestBody Videos video) {
+    public Video create(@RequestBody Video video) {
 
         return service.insertCustomVideo(video);
         //calling the insert method from the service and inserting the variable name of class Video
     }
 
     //Put
-    @PutMapping("/")
-    public Videos update(@RequestBody Videos video){
+    @PutMapping
+    public Video update(@RequestBody Video video){
 
         return service.updatebyTitle(video);
 
     }
 
     //Delete
-    @Delete("/")
-    public Videos delete(@RequestBody Videos video){
+    @DeleteMapping("/{idnumber}")
+    public Video delete(@PathVariable(value="idnumber")int idnumber){
 
-        return service.deletebyIDnumber(video);
+        return service.deletebyIDnumber(idnumber);
 
 
     }

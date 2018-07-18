@@ -3,7 +3,7 @@ package dailymotion.model.database;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Videos {
+public class Video {
 
     int idnumber;
     String id;
