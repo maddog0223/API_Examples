@@ -2,9 +2,7 @@ package dailymotion.mapper;
 
 
 import dailymotion.model.database.Videos;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 @Mapper
 public interface DailyMapper {
@@ -14,15 +12,31 @@ public interface DailyMapper {
 
     String GET_BY_ID = "SELECT * FROM `dailymotion`.`videos` where id = #{id}";
 
+    String GET_ID_NUMBER= "SELECT * FROM `dailymotion`.`videos` where idnumber = #{idnumber}";
+
     String GET_BY_TITLE = "SELECT * FROM `dailymotion`.`videos` where title = #{title}";
 
+    String UPDATE_VIDEO = "UPDATE `dailymotion`.`videos` SET id = #{id}, " +
+            "title = #{title}, channel = #{channel} WHERE idnumber = #{idnumber}";
+
+    String DELETE_VIDEO = "DELETE FROM `dailymotion`.`videos` WHERE title = #{title}";
+
     @Select(GET_BY_ID)
-    public Videos select_id(String id);
+    public Videos selectid(String id);
 
     @Select(GET_BY_TITLE)
-    public Videos select_title(String title);
+    public Videos selecttitle(String title);
+
+    @Select(GET_BY_ID)
+    public Videos selctbyIDNUMBER(int idnumber);
 
     @Insert(INSERT_VIDEO_DETAILS)
-    public int insert_video(Videos video);
+    public int insertvideo(Videos video);
+
+    @Update(UPDATE_VIDEO)
+    public int updatevideo(Videos video);
+
+    @Delete(DELETE_VIDEO)
+    public int deletevideo(Videos videos);
 
 }

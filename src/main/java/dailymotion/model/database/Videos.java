@@ -5,15 +5,15 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Videos {
 
-    String idnumber;
+    int idnumber;
     String id;
     String title;
     String channel;
     String owner;
 
-    public String getIdnumber() { return idnumber; }
+    public int getIdnumber() { return idnumber; }
 
-    public void setIdnumber(String idnumber) { this.idnumber = idnumber; }
+    public void setIdnumber(int idnumber) { this.idnumber = idnumber; }
 
     public String getId() {
         return id;
